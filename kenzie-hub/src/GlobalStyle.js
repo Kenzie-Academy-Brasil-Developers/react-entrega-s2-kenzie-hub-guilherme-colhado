@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Var } from './Var'
 
 export const GlobalStyle = createGlobalStyle`
-    body, header, main, figure, div, button, ul, li, a, p, h1, h2, h3, h4, svg, img{
+    body, header, main, figure, div, button, ul, li, a, p, h1, h2, h3, h4, svg, img, input, select{
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -16,6 +16,6 @@ export const GlobalStyle = createGlobalStyle`
 `
 export const AppStyle = styled.div`
     min-height: 100vh;
-    background: rgb(255,87,127);
-    background: linear-gradient(135deg, rgba(255,87,127,1) 0%, rgba(18,18,20,1) 100%);
+    background: ${Var.primary};
+    background: linear-gradient(45deg, ${Var.gray4} 0%, ${Var.gray4} 40%, ${Var.primaryHover} 70%, ${Var.primary} 100% );
 `
