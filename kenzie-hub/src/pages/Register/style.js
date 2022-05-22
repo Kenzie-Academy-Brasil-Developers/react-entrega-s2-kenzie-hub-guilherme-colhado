@@ -47,6 +47,9 @@ export const FormularioContainer = styled.div`
     label{
         font-size: 1.5rem;
         color: ${Var.gray0};
+        span{
+            color: red;
+        }
     }
     input{
         margin-top: 5px;
@@ -75,7 +78,7 @@ export const FormularioContainer = styled.div`
         color: ${Var.gray5};
         margin-top: 5px;
         padding: 10px 16px;
-        border-radius: 10px;
+        border-radius: 4px;
     }
     button{
         margin-top: 20px;

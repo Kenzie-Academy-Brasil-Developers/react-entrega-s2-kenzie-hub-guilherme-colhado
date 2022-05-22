@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { kenziehub } from '../../services/api'
 import { ButtonStyled } from "../../components/Buttons"
+import { toast } from 'react-toastify'
+
 export const Registro = () => {
     const navigate = useNavigate()
 
@@ -32,10 +34,20 @@ export const Registro = () => {
         formState: { errors },
     } = useForm({ resolver: yupResolver(formSchema) })
 
-    const onSubmitFuncion = (data) => {
-        const dataPost = {email: data.email, password: data.password, name: data.name, course_module: data.course_module}
-        kenziehub.post('/users',dataPost).then((_)=>{navigate('/')}).catch(err=>{console.log(err)})
+    const onSubmitFuncion = ({email, password, name, course_module}) => {
+        const dataPost = {email, password, name, course_module, bio: 'Pimba', contact: 'www.google.com'}
+        kenziehub.post('/users',dataPost)
+        .then((_)=>{
+            toast.success('Você foi cadastrado com sucesso')
+            navigate('/login')
+        })
+        .catch(err=>{
+            toast.error('Houve um erro ao tentar cadastra-lo')
+            console.log(err)
+        })
     }
+
+    console.log(errors)
 
     return <RegistroStyle>
         <div>
@@ -46,13 +58,13 @@ export const Registro = () => {
             <h2>Crie sua conta</h2>
             <p>Rapido e grátis, vamos nessa</p>
             <form onSubmit={handleSubmit(onSubmitFuncion)}>
-                <label htmlFor="nome">Nome</label>
+                <label htmlFor="nome">Nome <span>{errors.name && `- ${errors.name.message}`}</span></label>
                 <input type="text" {...register('name')} id="nome" placeholder="Digite aqui seu nome"/>
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email">Email <span>{errors.email && `- ${errors.email.message}`}</span></label>
                 <input type="text" {...register('email')} id="email" placeholder="Digite aqui seu email"/>
-                <label htmlFor="senha">Senha</label>
+                <label htmlFor="senha">Senha <span>{errors.password && `- ${errors.password.message}`}</span></label>
                 <input type="password" {...register('password')} id="senha" placeholder="Digite aqui sua senha"/>
-                <label htmlFor="repetir">Confirmar Senha</label>
+                <label htmlFor="repetir">Confirmar Senha <span>{errors.repeatPassword && `- ${errors.repeatPassword.message}`}</span></label>
                 <input type="password" {...register('repeatPassword')} id="repetir" placeholder="Digite novamente sua senha"/>
                 <label htmlFor="selecionar">Selecionar Módulo</label>
                 <select id="selecionar" {...register('course_module')}>

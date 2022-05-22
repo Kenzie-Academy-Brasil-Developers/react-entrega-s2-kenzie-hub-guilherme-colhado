@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Var } from './Var'
 
 export const GlobalStyle = createGlobalStyle`
-    body, header, main, figure, div, button, ul, li, a, p, h1, h2, h3, h4, svg, img, input, select{
+    body, header, main, figure, div, form, button, ul, li, a, p, h1, h2, h3, h4, svg, img, input, select, hr{
         margin: 0;
         padding: 0;
         box-sizing: border-box;
