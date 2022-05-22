@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Navigate } from 'react-router-dom'
 import { kenziehub } from '../../services/api'
 import { HeaderHome, HomeStyled, SecaoAdd, SecaoSobre, SecaoTec, SecaoTecs } from './style'
